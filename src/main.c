@@ -13,11 +13,11 @@
 #define NOERRORS 0
 #include <stdio.h>
 
+#define CELL_DIVIDE 2
 int Ameba_Unwrap(int cells, int hours, int level, int time_step, int cell_divide, int end_time);
 int Ameba(int cells, int time_step, int cell_divide, int end_time);
 int GetCells(void);
 int GetEndTime(void);
-int GetCellDivider(void);
 int GetTimeStep(void);
 
 int main(void)
@@ -25,7 +25,7 @@ int main(void)
 	int endTime = GetEndTime();
 	//Вывод конечного результата, запуск рекурсии
 	printf("\nИТОГО: через %d часа %d клеток\n", endTime,
-		Ameba(GetCells(), GetTimeStep(), GetCellDivider(), endTime));
+		Ameba(GetCells(), GetTimeStep(), CELL_DIVIDE, endTime));
 	return NOERRORS;
 }
 
@@ -72,20 +72,6 @@ int GetEndTime(void)
 	do//Проверка ввода
 	{
 		printf("Введите количество часов наблюдения: ");
-		scanf("%d", &n);
-		if (n >= 0)
-			return n;
-		printf("Число должно быть положительным\n");
-	} while (1);
-}
-
-/*Полученение числа деления клеток с ввода*/
-int GetCellDivider(void)
-{
-	int n;
-	do//Проверка ввода
-	{
-		printf("Введите число, на сколько будут делится клетки: ");
 		scanf("%d", &n);
 		if (n >= 0)
 			return n;
